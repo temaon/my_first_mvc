@@ -1,12 +1,29 @@
 {
-  "name": "vendor_name/package_name",
-  "description": "description_text",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "author's name",
-      "email": "email@example.com"
-    }
-  ]
+  "name": "test-project",
+  "description": "kkkkkkkkk",
+  "license": "MIT",
+  "autoload": {
+    "psr-0": {
+      "Illuminate\\": "vendor/illuminate"
+    },
+    "classmap": [
+      "vendor/"
+    ],
+    "psr-4": {
+      "App\\": "app"
+    },
+    "files": [
+      "vendor/illuminate/support/helpers.php"
+    ]
+  },
+  "require": {
+    "php": ">=7.0",
+    "illuminate/support": "5.3.*",
+    "paragonie/random_compat": "^2.0",
+    "phpmailer/phpmailer": "^5.2"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "minimum-stability": "stable"
 }

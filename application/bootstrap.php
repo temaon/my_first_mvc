@@ -8,10 +8,12 @@
 
 
 // подключаем файлы ядра
+require_once 'core/db_connect.php';
 require_once 'core/model.php';
 require_once 'core/view.php';
 require_once 'core/controller.php';
 require_once 'errors/not_found_exception.php';
+
 /*
 Здесь обычно подключаются дополнительные модули, реализующие различный функционал:
 	> аутентификацию
@@ -27,4 +29,9 @@ require_once 'errors/not_found_exception.php';
 */
 require_once 'core/route.php';
 
-Route::start(); // запускаем маршрутизатор
+try {
+    Route::start(); // запускаем маршрутизатор
+}catch (Exception $exception){
+    $exception->action();
+
+}

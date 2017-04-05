@@ -8,8 +8,7 @@
 
 class Controller404 extends Controller {
 
-    function __construct()
-    {
-        die(123);
+    function index(){
+        $this->view->generate('404_view.php', 'template_view.php');
     }
 }

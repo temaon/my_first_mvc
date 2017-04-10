@@ -17,7 +17,7 @@ class ControllerPortfolio extends Controller
 
     function index()
     {
-        $data = $this->model->get_data();
+        $data = $this->model->get();
         $this->view->generate('portfolio_view.php', 'template_view.php', $data);
     }
 }

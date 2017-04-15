@@ -34,6 +34,14 @@ class Route
             require_once $model_path;
         }
 
+        $model = new Portfolio();
+        $portfolio = $model->find(2);
+        $portfolio->setTitle('Title')->setYear(2020);
+        echo '<pre>';
+        var_dump($portfolio->save());
+        echo '</pre>';
+//        var_dump($portfolio->delete());
+        die;
         // подцепляем файл с классом контроллера
         $controller_file = strtolower($controller_name) . '.php';
         $controller_path = "../application/controllers/" . $controller_file;

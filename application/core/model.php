@@ -35,9 +35,9 @@ class Model
     private $field_list = '*';
 
     /**
-     * @var array (Для работы ф-ции getQuerySting())
+     * @var array (Список доступных полей для записи)
      */
-    private $query_array = [];
+    protected $fields = [];
 
     /**
      * @var string (В этом свойстве будет храница полная строка запроса)
@@ -86,6 +86,13 @@ class Model
             'query_limit' => $this->query_limit,
         ], ' ');
         return $this->query_string;
+    }
+
+    /*
+     * Метод для проверки - новая ли запись
+     */
+    public function isNew(){
+        return !$this->getId();
     }
 
 
@@ -170,15 +177,54 @@ class Model
 
 
     /*
-     * Метод удалениякаждого объекта из базы
+     * Метод удаления каждого объекта из базы
      */
     public function delete()
     {
         $this->query_type = 'DELETE';
         $this->field_list = NULL;
         $this->where('id', $this->id);
-        $this->db_connection->query($this->getQueryString());
+        echo $this->getQueryString();
+//        $this->db_connection->query($this->getQueryString());
+//        return $this;
+    }
+
+
+    /*
+     * Метод схранения каждого объекта из базы
+     */
+    public function save()
+    {
+        var_dump($this->isNew());
+        return $this->isNew() ? $this->create() : $this->update();
+    }
+
+    public function create(){
+        $this->query_type = "INSERT INTO $this->table_name";
+        $this->from_table = NULL;
+        $this->field_list = '('.implode($this->fields, ', ').')';
+        $this->table_name = NULL;
+        $this->condition = 'VALUES (' . implode(array_map(function($value){
+        return $this->getConnection()->quote($this->$value);
+    }, $this->fields), ', ') . ')';
+        $this->getConnection()->query($this->getQueryString());
         return $this;
+    }
+
+    public function update(){
+        $this->query_type = "UPDATE $this->table_name SET ";
+        $query_string = array_map(function($value){
+            return "$value = {$this->getConnection()->quote($this->$value)}";
+        }, $this->fields);
+        $this->field_list = implode($query_string, ', ');
+        $this->where('id', $this->getId());
+        $this->table_name = NULL;
+        $this->getConnection()->query($this->getQueryString());
+        return $this;
+    }
+
+    public function getFields(){
+        return get_class_vars('Portfolio');
     }
 
 }

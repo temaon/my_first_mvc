@@ -10,13 +10,20 @@ class Portfolio extends Model
 {
     public $table_name = 'portfolios';
 
-    private $title;
+    protected $title;
 
-    private $year;
+    protected $year;
 
-    private $site;
+    protected $site;
 
-    private $description;
+    protected $description;
+
+    protected $fields = [
+        'title',
+        'description',
+        'site',
+        'year'
+    ];
 
 
     public function getTitle()

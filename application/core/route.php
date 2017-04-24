@@ -33,13 +33,20 @@ class Route
         if (file_exists($model_path)) {
             require_once $model_path;
         }
-
-        $model = new Portfolio();
-        $portfolio = $model->find(2);
-        $portfolio->setTitle('Title')->setYear(2020);
-        echo '<pre>';
-        var_dump($portfolio->save());
-        echo '</pre>';
+        var_dump(
+            Session::setValue('key', 123),
+            Session::getValue('key'),
+            Session::existsKey('key'),
+            Session::deleteValue('key'),
+            Session::existsKey('key')
+        );
+        die;
+//        $model = new Portfolio();
+//        $portfolio = $model->find(2);
+//        $portfolio->setTitle('Title')->setYear(2020);
+//        echo '<pre>';
+//        var_dump($portfolio->save());
+//        echo '</pre>';
 //        var_dump($portfolio->delete());
         die;
         // подцепляем файл с классом контроллера

@@ -8,6 +8,8 @@
 
 
 // подключаем файлы ядра
+require_once 'core/session/session.php';
+require_once 'core/session/flash.php';
 require_once 'errors/db_exception.php';
 require_once 'errors/not_found_exception.php';
 require_once 'core/db/db_connect.php';

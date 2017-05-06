@@ -22,6 +22,7 @@ Modified by VitalySwipe
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <script src="/js/jquery-1.6.2.js" type="text/javascript"></script>
+    <script src="/js/custom.js" type="text/javascript"></script>
     <script type="text/javascript">
         // return a random integer between 0 and number
         function random(number) {
@@ -41,7 +42,7 @@ Modified by VitalySwipe
 <body>
 <div id="wrapper">
     <div id="header">
-        <div id="logo">
+        <div id="logo" title="abc_some">
             <a href="/">ОЛОЛОША</span> <span class="cms">TEAM</span></a>
         </div>
         <div id="menu">
@@ -142,5 +143,10 @@ Modified by VitalySwipe
 <div id="footer">
     <a href="/">ОЛОЛОША TEAM</a> &copy; 2012</a>
 </div>
+
+<div id="popup" class="overlay" style="display:none">
+    <div id="ajax_content"></div>
+</div>
+
 </body>
 </html>
